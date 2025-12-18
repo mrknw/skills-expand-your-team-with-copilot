@@ -238,6 +238,88 @@ section h3 {
   background-color: var(--success);
 }
 
+/* Social Sharing Buttons */
+.share-buttons {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  margin: 8px 0;
+  padding: 8px 0;
+  border-top: 1px solid var(--border-light);
+  border-bottom: 1px solid var(--border-light);
+}
+
+.share-label {
+  font-size: 0.75rem;
+  color: var(--text-secondary);
+  font-weight: 600;
+  margin-right: 2px;
+}
+
+.share-button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 28px;
+  height: 28px;
+  border-radius: 50%;
+  border: 1px solid var(--border);
+  background-color: var(--surface);
+  cursor: pointer;
+  transition: all 0.2s ease;
+  padding: 0;
+}
+
+.share-button:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.share-button.twitter {
+  color: #1DA1F2;
+}
+
+.share-button.twitter:hover {
+  background-color: #1DA1F2;
+  border-color: #1DA1F2;
+  color: white;
+}
+
+.share-button.facebook {
+  color: #1877F2;
+}
+
+.share-button.facebook:hover {
+  background-color: #1877F2;
+  border-color: #1877F2;
+  color: white;
+}
+
+.share-button.email {
+  color: #EA4335;
+}
+
+.share-button.email:hover {
+  background-color: #EA4335;
+  border-color: #EA4335;
+  color: white;
+}
+
+.share-button.copy {
+  color: var(--text-secondary);
+}
+
+.share-button.copy:hover {
+  background-color: var(--text-primary);
+  border-color: var(--text-primary);
+  color: white;
+}
+
+.share-button svg {
+  width: 16px;
+  height: 16px;
+}
+
 /* Participants list */
 .participants-list {
   margin-top: 8px;
