@@ -27,8 +27,8 @@ document.addEventListener("DOMContentLoaded", () => {
 
   // Dark mode toggle element
   const darkModeToggle = document.getElementById("dark-mode-toggle");
-  const themeIcon = darkModeToggle.querySelector(".theme-icon");
-  const themeText = darkModeToggle.querySelector(".theme-text");
+  const themeIcon = darkModeToggle ? darkModeToggle.querySelector(".theme-icon") : null;
+  const themeText = darkModeToggle ? darkModeToggle.querySelector(".theme-text") : null;
 
   // Activity categories with corresponding colors
   const activityTypes = {
@@ -51,6 +51,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
   // Dark mode functions
   function initializeDarkMode() {
+    if (!darkModeToggle) return;
     // Check localStorage for saved preference
     const savedTheme = localStorage.getItem("theme");
     if (savedTheme === "dark") {
@@ -61,6 +62,7 @@ document.addEventListener("DOMContentLoaded", () => {
   }
 
   function enableDarkMode() {
+    if (!darkModeToggle || !themeIcon || !themeText) return;
     document.body.classList.add("dark-mode");
     themeIcon.textContent = "☀️";
     themeText.textContent = "Light";
@@ -68,6 +70,7 @@ document.addEventListener("DOMContentLoaded", () => {
   }
 
   function disableDarkMode() {
+    if (!darkModeToggle || !themeIcon || !themeText) return;
     document.body.classList.remove("dark-mode");
     themeIcon.textContent = "🌙";
     themeText.textContent = "Dark";
@@ -278,7 +281,9 @@ document.addEventListener("DOMContentLoaded", () => {
   closeLoginModal.addEventListener("click", closeLoginModalHandler);
 
   // Event listener for dark mode toggle
-  darkModeToggle.addEventListener("click", toggleDarkMode);
+  if (darkModeToggle) {
+    darkModeToggle.addEventListener("click", toggleDarkMode);
+  }
 
   // Close login modal when clicking outside
   window.addEventListener("click", (event) => {
