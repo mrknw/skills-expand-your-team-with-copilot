@@ -25,6 +25,11 @@ document.addEventListener("DOMContentLoaded", () => {
   const closeLoginModal = document.querySelector(".close-login-modal");
   const loginMessage = document.getElementById("login-message");
 
+  // Dark mode toggle element
+  const darkModeToggle = document.getElementById("dark-mode-toggle");
+  const themeIcon = darkModeToggle.querySelector(".theme-icon");
+  const themeText = darkModeToggle.querySelector(".theme-text");
+
   // Activity categories with corresponding colors
   const activityTypes = {
     sports: { label: "Sports", color: "#e8f5e9", textColor: "#2e7d32" },
@@ -43,6 +48,39 @@ document.addEventListener("DOMContentLoaded", () => {
 
   // Authentication state
   let currentUser = null;
+
+  // Dark mode functions
+  function initializeDarkMode() {
+    // Check localStorage for saved preference
+    const savedTheme = localStorage.getItem("theme");
+    if (savedTheme === "dark") {
+      enableDarkMode();
+    } else {
+      disableDarkMode();
+    }
+  }
+
+  function enableDarkMode() {
+    document.body.classList.add("dark-mode");
+    themeIcon.textContent = "☀️";
+    themeText.textContent = "Light";
+    localStorage.setItem("theme", "dark");
+  }
+
+  function disableDarkMode() {
+    document.body.classList.remove("dark-mode");
+    themeIcon.textContent = "🌙";
+    themeText.textContent = "Dark";
+    localStorage.setItem("theme", "light");
+  }
+
+  function toggleDarkMode() {
+    if (document.body.classList.contains("dark-mode")) {
+      disableDarkMode();
+    } else {
+      enableDarkMode();
+    }
+  }
 
   // Time range mappings for the dropdown
   const timeRanges = {
@@ -238,6 +276,9 @@ document.addEventListener("DOMContentLoaded", () => {
   loginButton.addEventListener("click", openLoginModal);
   logoutButton.addEventListener("click", logout);
   closeLoginModal.addEventListener("click", closeLoginModalHandler);
+
+  // Event listener for dark mode toggle
+  darkModeToggle.addEventListener("click", toggleDarkMode);
 
   // Close login modal when clicking outside
   window.addEventListener("click", (event) => {
@@ -862,6 +903,7 @@ document.addEventListener("DOMContentLoaded", () => {
   };
 
   // Initialize app
+  initializeDarkMode();
   checkAuthentication();
   initializeFilters();
   fetchActivities();
